@@ -23,13 +23,13 @@ resource "proxmox_lxc" "staging_server" {
   vmid         = 151
   target_node  = "pve"
   hostname     = "staging-server"
-  ostemplate   = "local:vztmpl/fedora-37-default_20221119_amd64.tar.xz"
-  password     = "staging"
+  ostemplate   = var.TEMPLATE_NAME
+  password     = var.LXC_PW
   unprivileged = true
   memory       = 512
   swap         = 256
   cores        = 1
-  nameserver   = "192.168.2.1"
+  nameserver   = var.NAMESERVER
 
   features {
     fuse    = false
@@ -47,7 +47,7 @@ resource "proxmox_lxc" "staging_server" {
     name   = "eth0"
     bridge = "vmbr0"
     ip     = "192.168.2.151/24"
-    gw     = "192.168.2.1"
+    gw     = var.NAMESERVER
 
   }
 
