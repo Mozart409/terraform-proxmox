@@ -8,7 +8,7 @@ lint: fmt clear
 	terraform validate
 
 plan: lint clear
-	terraform plan -out=plan.out
+	terraform plan
 
 apply: lint clear
 	terraform apply
